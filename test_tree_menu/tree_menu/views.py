@@ -4,16 +4,16 @@ from django.http import Http404
 from .models import TreeMenu
 
 
-def index(request):
-    return HttpResponse("Hello, world. You're at the polls index.")
-
-
-def menu_view(request, menu_name):
+def index(request, menu_name=""):
     # try:
-        menu_db = TreeMenu.objects.filter(menu_url=menu_name).first()
+        print(menu_name)
+        menu_db = TreeMenu.objects.all()
+        menu_active = TreeMenu.objects.filter(menu_url = menu_name).first()
         context = {
-            'menu_list': menu_db
+            'menu_list': menu_db,
+            'item_menu': menu_active
         }
         return render(request, "tree_menu/base.html", context)
     # except:
-    #     raise Http404("не найден пункт меню")
+    #     raise Http404("нет меню")
+
