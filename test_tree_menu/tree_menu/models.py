@@ -23,6 +23,7 @@ class TreeMenu(BaseModel):
     menu = models.ForeignKey(Menu, on_delete=models.CASCADE)
     parent = models.ForeignKey('self', db_index=True, null=True, blank =True,validators=[MinValueValidator(0)], on_delete=models.CASCADE)
     menu_url = models.CharField(max_length=50)
+    is_root = models.BooleanField(default = False)
 
     def __str__(self):
         return self.title

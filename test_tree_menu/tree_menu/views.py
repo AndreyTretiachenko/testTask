@@ -9,5 +9,5 @@ def index(request, menu_name: str = None):
         context = {
 
         }
-        return render(request, "tree_menu/base.html", context)
+        return render(request, "tree_menu/base.html")
 
